@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "worky"
+version = "0.1.0"
+description = "Worky is a tool that helps to define and load project workspaces."
+authors = ["zappaboy <federico.zappone@justanother.cloud>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
