@@ -1,0 +1,51 @@
+[variables]
+browser = "xdg-open"  # or google-chrome-stable, firefox, etc.
+core = "charm"
+ui = "webstorm"
+compose = "docker-compose"
+
+base_project_dir = "$HOME/project_dir"
+core_project_dir = "${base_project_dir}/core_dir"
+ui_project_dir = "${base_project_dir}/ui_dir"
+
+[browser]
+args = [
+    "http://localhost:3000"
+]
+
+[browser]
+args = [
+    "https://somedocs.dev"
+]
+
+[core]
+args = [
+    "${core_project_dir}"
+]
+
+[ui]
+args = [
+    "${ui_project_dir}"
+]
+
+[compose]
+condition = "compose_core"
+args = [
+    "-f",
+    "${core_project_dir}/docker-compose.yaml",
+    "up",
+    "--build",
+    "-d",
+    "--remove-orphans"
+]
+
+[compose]
+condition = "compose_ui"
+args = [
+    "-f",
+    "${ui_project_dir}/docker-compose.yaml",
+    "up",
+    "--build",
+    "-d",
+    "--remove-orphans"
+]
