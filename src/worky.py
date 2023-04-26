@@ -9,12 +9,11 @@ class Worky:
     config: Config = None
 
     def __init__(self):
-        print('Starting worky')
+        print('Welcome to worky...')
 
     def run(self, args=None):
         if args is None:
             args = sys.argv
-        print('Running worky')
         print('Args: ', args)
         parser = argparse.ArgumentParser()
         parser.add_argument('-c', '--config', type=file_type, required=False)

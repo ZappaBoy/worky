@@ -10,16 +10,18 @@ class Config:
     def __init__(self, config_path: str):
         self.config_path = config_path
         config_file_content = self.read_config_file(config_path)
-        self.variables = config_file_content['variables']
-        for key, value in self.variables.items():
-            self.variables[key] = self.expand_variables(value)
-
+        self.read_variables(config_file_content)
         print(self.variables)
 
     @staticmethod
     def read_config_file(config_path: str):
         with open(config_path, 'rb') as config_file:
             return tomllib.load(config_file)
+
+    def read_variables(self, config_file_content):
+        self.variables = config_file_content['variables']
+        for key, value in self.variables.items():
+            self.variables[key] = self.expand_variables(value)
 
     def expand_variables(self, value: dict):
         variables_to_expand = expandable_variables_pattern.findall(value)
