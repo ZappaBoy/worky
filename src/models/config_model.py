@@ -11,7 +11,9 @@ class Config:
         self.config_path = config_path
         config_file_content = self.read_config_file(config_path)
         self.variables = config_file_content['variables']
-        self.variables = self.expand_variables(self.variables)
+        for key, value in self.variables.items():
+            self.variables[key] = self.expand_variables(value)
+
         print(self.variables)
 
     @staticmethod
@@ -19,13 +21,10 @@ class Config:
         with open(config_path, 'rb') as config_file:
             return tomllib.load(config_file)
 
-    @staticmethod
-    def expand_variables(variables: dict):
-        for key, value in variables.items():
-            variables_to_expand = expandable_variables_pattern.findall(value)
-            if variables_to_expand is not None:
-                for variable in variables_to_expand:
-                    variable_name = variable.replace('${', '').replace('}', '')
-                    variables[key] = value.replace(variable, variables[variable_name])
-
-        return variables
+    def expand_variables(self, value: dict):
+        variables_to_expand = expandable_variables_pattern.findall(value)
+        if variables_to_expand is not None:
+            for variable in variables_to_expand:
+                variable_name = variable.replace('${', '').replace('}', '')
+                value = value.replace(variable, self.variables[variable_name])
+        return value
