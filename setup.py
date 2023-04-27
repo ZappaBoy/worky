@@ -8,7 +8,7 @@ package_data = \
     {'': ['*']}
 
 entry_points = \
-    {'console_scripts': ['start = worky:start']}
+    {'console_scripts': ['worky = worky:main']}
 
 setup_kwargs = {
     'name': 'worky',
