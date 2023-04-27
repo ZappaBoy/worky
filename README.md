@@ -18,7 +18,7 @@ To install it, simply run:
 pip install worky
 ```
 ### For Arch Linux Repository users
-If you are on an arch-based distro and can access to the [Arch Linux Repository (AUR)](https://aur.archlinux.org/) you can install it using an AUR helper like [yay](https://github.com/Jguer/yay):
+If you are on an arch-based distro and can access to the [Arch Linux Repository (AUR)](https://aur.archlinux.org/) you can install [worky](https://aur.archlinux.org/packages/worky) using an AUR helper like [yay](https://github.com/Jguer/yay):
 ```shell
 yay -S worky
 ```
