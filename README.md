@@ -93,5 +93,4 @@ poetry2setup > setup.py
 Then build the package with `poetry build` and create a PR with your changes if there are no issues.
 
 # Buy me a coffee
-If you appreciate this project I will appreciate your support.
-[Buy me a coffee](https://github.com/sponsors/ZappaBoy)
+If you appreciate my work I will appreciate if you [buy me a coffee](https://github.com/sponsors/ZappaBoy).
