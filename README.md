@@ -4,12 +4,12 @@ Manage your workspaces and increase your productivity.
 ## What is Worky?
 Worky is a tool that helps to define and load project workspaces. It can be used to load a project workspace with a single command and quickly start your work.
 Worky saves you from wasting time doing repetitive tasks before actually starting to work.
-This project can be used for every type of projects or workspaces, the only limitations is due to the functionality of the programs that you can run from CLI.
+This project can be used for every type of project or workspace, the only limitation is due to the functionality of the programs that you can run from CLI.
 
 ## Future improvements
-Please note that this is a work in progress tool. If you have any idea or suggestion, please open an issue or a pull request.
+Please note that this is a work-in-progress tool. If you have any ideas or suggestions, please open an issue or a pull request.
 Any helps is appreciated. Here is a list of future improvements:
-- [ ] Add the window managers support to open programs in a specific workspace/monitor.
+- [ ] Add the window manager support to open programs in a specific workspace/monitor.
 
 ## Installation
 This project uses [Poetry](https://python-poetry.org/) to manage dependencies and packaging and it is available on [PyPI](https://pypi.org/project/worky/).
@@ -28,26 +28,26 @@ If you prefer a practical way to understand how to worky configuration works, yo
 
 ### Worky configuration file - `.worky.toml`
 Worky automatically looks for a `.worky.toml` file in the current directory where is called.
-If it finds one, it will use it to load the workspace, alternatively you need to specify a configuration file using the `-c` flag followed by the path of the config file.
+If it finds one, it will use it to load the workspace, alternatively, you need to specify a configuration file using the `-c` flag followed by the path of the config file.
 If you prefer, you can create a subdirectory named as your project (`project_name`) under the `~/.config/worky/`. Here you can put your `config.toml` file and worky will automatically look for it when you run `worky project_name`.
-For example if you have a project named `my_project` you can create a `~/.config/worky/my_project/config.toml` file and use `worky my_project` to load the project workspace.
+For example, if you have a project named `my_project` you can create a `~/.config/worky/my_project/config.toml` file and use `worky my_project` to load the project workspace.
 
 ### Variables
-Variables can be defined in the `[variables]` section of the configuration file. Variables value is the command to be executed.
+Variables can be defined in the `[variables]` section of the configuration file. The variable's value is the command to be executed.
 The variables can be used in all the config file except for the steps name.
-The value of the variables used in the step name define the command that will be executed. See the [steps section](#steps) for more details.
+The value of the variables used in the step name defines the command that will be executed. See the [steps section](#steps) for more details.
 
 ### Steps
 The steps are the commands that will be executed when you load the workspace. The command is defined by the step name using a variable.
-For example, if you have a variable named `backend` with value `idea` you can define a step named `backend` and worky will run the idea IDE.
+For example, if you have a variable named `backend` with the value `idea` you can define a step named `backend` and worky will run the idea IDE.
 
 #### Args
 Steps can have an `args` property that is a list of arguments to be passed to the command when it is executed.
-An example of argument can be the path of the project to open but this strictly depend from the program that you want to load.
+An example of an argument can be the path of the project to open but this strictly depends on the program that you want to load.
 
 #### Condition
 Steps can have a `condition` property that is the name of a flag that you can pass when you run worky that defines if the step should be executed or not.
-For example if you want to run a `docker-compose` command only if you pass the `-f docker` flag you can define a step like this:
+For example, if you want to run a `docker-compose` command only if you pass the `-f docker` flag you can define a step like this:
 ```toml
 [variables]
 compose = "docker-compose"
@@ -67,7 +67,7 @@ Worky configuration depends on the [TOML](https://toml.io/en/) syntax. This mean
 You can crate two different steps using variables with the same value. Moreover, this helps to keep the configuration file clean and readable.
 
 ## Usage
-After installed and configured worky, you can use it to load your project workspace simply running:
+After installing and configured worky, you can use it to load your project workspace simply by running:
 ```shell
 worky  # If you have a .worky.toml file in the current directory
 # or
