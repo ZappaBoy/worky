@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "worky"
-version = "0.1.1"
+version = "0.1.3"
 description = "Worky is a tool that helps to define and load project workspaces."
 authors = ["ZappaBoy <federico.zappone@justanother.cloud>"]
 readme = "README.md"

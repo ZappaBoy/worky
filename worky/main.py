@@ -86,8 +86,3 @@ class Worky:
     @staticmethod
     def run_command(command: str):
         subprocess.Popen(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-
-if __name__ == '__main__':
-    worky = Worky()
-    worky.run()
