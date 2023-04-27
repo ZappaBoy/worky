@@ -1,4 +1,5 @@
 import argparse
+import os.path
 import subprocess
 import sys
 from typing import List
@@ -6,6 +7,9 @@ from typing import List
 from src.models.config_model import Config
 from src.utils.logger import Logger
 from src.utils.util import file_type
+
+DEFAULT_CONFIG_DIR = os.path.expanduser('~/.config/worky')
+DEFAULT_CONFIG_FILE_NAME = 'config.toml'
 
 
 class Worky:
@@ -22,7 +26,14 @@ class Worky:
             self.logger.set_log_level(0)
         else:
             self.logger.set_log_level(args.verbose)
-        self.load_config(args.config)
+        config_file_path = args.config
+        if config_file_path is None and args.name is not None:
+            config_file_path = os.path.join(DEFAULT_CONFIG_DIR, args.name, DEFAULT_CONFIG_FILE_NAME)
+        if config_file_path is None or not os.path.exists(config_file_path):
+            self.logger.error(f'Config file not found: {config_file_path}')
+            sys.exit(1)
+
+        self.load_config(config_file_path)
         self.flags = args.flags
         self.dry_run = args.dry_run
         self.run_steps()
@@ -32,7 +43,7 @@ class Worky:
         if args is None:
             args = sys.argv[1:]
         parser = argparse.ArgumentParser()
-        parser.add_argument('-c', '--config', type=file_type, required=False,
+        parser.add_argument('-c', '--config', type=file_type, required=False, default='.worky.toml',
                             help='Define the Worky config file path to load')
         parser.add_argument('-f', '--flags', nargs='+', default=[], required=False,
                             help='Define the flags to meet the condition in Worky config file')
@@ -42,6 +53,8 @@ class Worky:
                             help='Increase verbosity (can be repeated)')
         parser.add_argument('-q', '--quiet', action=argparse.BooleanOptionalAction, default=False, required=False,
                             help='Do not print any output/log')
+        parser.add_argument('name', nargs='?', type=str, default=None,
+                            help=f'Define the Worky project name stored in {DEFAULT_CONFIG_DIR}')
         return parser.parse_args(args)
 
     def load_config(self, config_path: str):
