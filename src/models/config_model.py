@@ -15,8 +15,6 @@ class Config:
         config_file_content = self.read_config_file(config_path)
         self.read_variables(config_file_content)
         self.read_steps(config_file_content)
-        print('Variables: ', self.variables)
-        print('Steps: ', self.steps)
 
     @staticmethod
     def read_config_file(config_path: str):

@@ -7,7 +7,7 @@ Worky saves you from wasting time doing repetitive tasks before actually startin
 
 ## This is a work in progress tool
 Future improvements
-- [ ] Add a verbose option (-v, -vv, -vvv, -vvvv)
+- [x] Add a verbose option (-v, -vv, -vvv, -vvvv)
 - [ ] Add default config directory where store the project toml config
 - [ ] Add a global.toml config support
 - [ ] Add the in-directory config priority
