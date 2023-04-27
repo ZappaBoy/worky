@@ -1,6 +1,7 @@
 import re
-import tomllib
 from typing import List
+
+import toml  # replace with tomllib whet python 3.11 become stable
 
 expandable_variables_pattern = re.compile(r"\$\{.*}")
 excluded_steps_entries = ['variables']
@@ -18,8 +19,7 @@ class Config:
 
     @staticmethod
     def read_config_file(config_path: str):
-        with open(config_path, 'rb') as config_file:
-            return tomllib.load(config_file)
+        return toml.load(config_path)
 
     def read_steps(self, config_file_content):
         for key, value in config_file_content.items():
