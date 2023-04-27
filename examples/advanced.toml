@@ -1,0 +1,70 @@
+[variables]
+# Define variables to be used in the steps.
+# The variables can be used in all the config file except for the steps name.
+# The value of the variables used in the step name define the command that will be executed.
+browser = "xdg-open"  # or google-chrome-stable, firefox, etc.
+core = "charm"
+ui = "webstorm"
+compose = "docker-compose"
+
+# You can use a variable to define another variable.
+# This helps readability and avoid the steps with the same name that are not allowed in TOML syntax.
+compose_core = "${compose}"
+compose_ui = "${compose}"
+
+# Your variables can use environment variables as well.
+# The environment variables are resolved only when the command is executed.
+base_project_dir = "$HOME/project_dir"
+core_project_dir = "${base_project_dir}/core_dir"
+ui_project_dir = "${base_project_dir}/ui_dir"
+
+# Define the steps to be executed.
+# The steps are executed in the same order they are defined.
+
+# This step run the browser using the variable defined above: browser = "xdg-open"
+[browser]
+# args is a list of arguments that are passed to the command.
+# The command that run from this step is: "xdg-open http://localhost:3000".
+args = [
+    "http://localhost:3000"
+]
+
+[browser]
+args = [
+    "https://zappaboy.github.io/"
+]
+
+[core]
+args = [
+    "${core_project_dir}"
+]
+
+[ui]
+args = [
+    "${ui_project_dir}"
+]
+
+[compose_core]
+# The condition keywork define the name of a flag that can be passed when you run the worky tool.
+# If the condition flag is passed, the step is executed.
+# This step is executed only if you run the worky tool with the "-f compose_core" arg.
+condition = "compose_core"
+args = [
+    "-f",
+    "${core_project_dir}/docker-compose.yaml",
+    "up",
+    "--build",
+    "-d",
+    "--remove-orphans"
+]
+
+[compose_ui]
+condition = "compose_ui"
+args = [
+    "-f",
+    "${ui_project_dir}/docker-compose.yaml",
+    "up",
+    "--build",
+    "-d",
+    "--remove-orphans"
+]

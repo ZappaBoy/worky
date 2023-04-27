@@ -1,24 +1,33 @@
+# This is a basic example of a Worky config file.
+# This config id for a project that has a core and a ui component.
+# The "core" is loaded in the "charm" IDE and the "ui" is loaded in the "webstorm" IDE.
+
+# The variables can be used in all the config file except for the steps name.
+# The value of the variables used in the step name define the command that will be executed.
 [variables]
-browser = "xdg-open"  # or google-chrome-stable, firefox, etc.
 core = "charm"
 ui = "webstorm"
-compose = "docker-compose"
 
+# Your variables can use environment variables as well.
+# The environment variables are resolved only when the command is executed.
 base_project_dir = "$HOME/project_dir"
+
+# You can use a variable to define another variable.
+# This helps readability and avoid the steps with the same name that are not allowed in TOML syntax.
 core_project_dir = "${base_project_dir}/core_dir"
 ui_project_dir = "${base_project_dir}/ui_dir"
 
-[browser]
-args = [
-    "http://localhost:3000"
-]
 
-[browser]
-args = [
-    "https://somedocs.dev"
-]
+# Define the steps to be executed.
+# The steps are executed in the same order they are defined.
 
+# This step named "core" run the charm IDE and load the ${core_project_dir} using the variable defined above: core = "charm"
 [core]
+# args is a list of arguments that are passed to the command.
+# The command that run from this step is:
+#   core "${base_project_dir}/core_dir"
+# This command is executed expanding the variables as the following:
+#  charm "$HOME/project_dir/core_dir"
 args = [
     "${core_project_dir}"
 ]
@@ -26,26 +35,4 @@ args = [
 [ui]
 args = [
     "${ui_project_dir}"
-]
-
-[compose]
-condition = "compose_core"
-args = [
-    "-f",
-    "${core_project_dir}/docker-compose.yaml",
-    "up",
-    "--build",
-    "-d",
-    "--remove-orphans"
-]
-
-[compose]
-condition = "compose_ui"
-args = [
-    "-f",
-    "${ui_project_dir}/docker-compose.yaml",
-    "up",
-    "--build",
-    "-d",
-    "--remove-orphans"
 ]
