@@ -1,6 +1,6 @@
 import logging
 
-from src.worky.models.log_level import LogLevel
+from worky.models.log_level import LogLevel
 
 
 class Logger:

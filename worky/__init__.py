@@ -1,4 +1,4 @@
-from src.worky.worky import Worky
+from worky.main import Worky
 
 
 def start():

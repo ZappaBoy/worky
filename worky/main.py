@@ -4,9 +4,9 @@ import subprocess
 import sys
 from typing import List
 
-from src.worky.models.config_model import Config
-from src.worky.utils.logger import Logger
-from src.worky.utils.util import file_type
+from worky.models.config_model import Config
+from worky.utils.logger import Logger
+from worky.utils.util import file_type
 
 DEFAULT_CONFIG_DIR = os.path.expanduser('~/.config/worky')
 DEFAULT_CONFIG_FILE_NAME = 'config.toml'
