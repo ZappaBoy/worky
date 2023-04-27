@@ -1,14 +1,24 @@
 [tool.poetry]
 name = "worky"
-version = "0.1.3"
+version = "0.1.4"
 description = "Worky is a tool that helps to define and load project workspaces."
 authors = ["ZappaBoy <federico.zappone@justanother.cloud>"]
+maintainers = ["ZappaBoy <federico.zappone@justanother.cloud>"]
 readme = "README.md"
 packages = [{ include = "worky" }]
+homepage = "https://github.com/ZappaBoy/worky"
+repository = "https://github.com/ZappaBoy/worky"
+documentation = "https://github.com/ZappaBoy/worky/blob/main/README.md"
+keywords = ["worky", "productivity", "workspace", "initializer"]
+classifiers = [
+    "Topic :: Utilities",
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.poetry.group.dev.dependencies]
+poetry2setup = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core"]
