@@ -6,7 +6,7 @@ Worky is a tool that helps to define and load project workspaces. It can be used
 Worky saves you from wasting time doing repetitive tasks before actually starting to work.
 This project can be used for every type of project or workspace, the only limitation is due to the functionality of the programs that you can run from CLI.
 
-<img alt="Demo gif" src="https://s12.gifyu.com/images/worky_demo.gif" width="100%"/>
+<img alt="Demo gif" src="https://s11.gifyu.com/images/worky_demo_compressed.gif" width="100%"/>
 
 ## Future improvements
 Please note that this is a work-in-progress tool. If you have any ideas or suggestions, please open an issue or a pull request.
