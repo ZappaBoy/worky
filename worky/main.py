@@ -1,16 +1,15 @@
 import argparse
+import importlib.metadata as metadata
 import os.path
 import subprocess
 import sys
 from typing import List
 
-import toml
-
 from worky.models.config_model import Config
 from worky.utils.logger import Logger
 from worky.utils.util import file_type
 
-VERSION = toml.load("pyproject.toml")["tool"]["poetry"]["version"]
+__version__ = metadata.version(__package__ or __name__)
 DEFAULT_CONFIG_DIR = os.path.expanduser('~/.config/worky')
 DEFAULT_CONFIG_FILE_NAME = 'config.toml'
 
@@ -60,7 +59,7 @@ class Worky:
                             help='Do not print any output/log')
         parser.add_argument('name', nargs='?', type=str, default=None,
                             help=f'Define the Worky project name stored in {DEFAULT_CONFIG_DIR}')
-        parser.add_argument('--version', action='version', version=f'%(prog)s {VERSION}')
+        parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
         return parser.parse_args(args)
 
     def load_config(self, config_path: str):
