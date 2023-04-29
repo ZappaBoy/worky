@@ -4,10 +4,13 @@ import subprocess
 import sys
 from typing import List
 
+import toml
+
 from worky.models.config_model import Config
 from worky.utils.logger import Logger
 from worky.utils.util import file_type
 
+VERSION = toml.load("pyproject.toml")["tool"]["poetry"]["version"]
 DEFAULT_CONFIG_DIR = os.path.expanduser('~/.config/worky')
 DEFAULT_CONFIG_FILE_NAME = 'config.toml'
 
@@ -29,6 +32,8 @@ class Worky:
         config_file_path = args.config
         if config_file_path is None and args.name is not None:
             config_file_path = os.path.join(DEFAULT_CONFIG_DIR, args.name, DEFAULT_CONFIG_FILE_NAME)
+            if not os.path.exists(config_file_path):
+                config_file_path = os.path.join(DEFAULT_CONFIG_DIR, f'{args.name}.toml')
         if config_file_path is None or not os.path.exists(config_file_path):
             self.logger.error(f'Config file not found: {config_file_path}')
             sys.exit(1)
@@ -55,6 +60,7 @@ class Worky:
                             help='Do not print any output/log')
         parser.add_argument('name', nargs='?', type=str, default=None,
                             help=f'Define the Worky project name stored in {DEFAULT_CONFIG_DIR}')
+        parser.add_argument('--version', action='version', version=f'%(prog)s {VERSION}')
         return parser.parse_args(args)
 
     def load_config(self, config_path: str):
@@ -80,7 +86,7 @@ class Worky:
             else:
                 self.run_command(command)
         if self.dry_run:
-            # Print without logger to be sure to print it every time
+            # Print without logger to be sure to print it every time. This ignores quiet option
             print(dry_run_output)
 
     @staticmethod

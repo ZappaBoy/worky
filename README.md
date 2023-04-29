@@ -28,11 +28,14 @@ yay -S worky
 ## Configuration
 If you prefer a practical way to understand how to worky configuration works, you can take a look at the [examples directory](https://github.com/ZappaBoy/worky/tree/main/examples).
 
-### Worky configuration file - `.worky.toml`
-Worky automatically looks for a `.worky.toml` file in the current directory where is called.
-If it finds one, it will use it to load the workspace, alternatively, you need to specify a configuration file using the `-c` flag followed by the path of the config file.
-If you prefer, you can create a subdirectory named as your project (`project_name`) under the `~/.config/worky/`. Here you can put your `config.toml` file and worky will automatically look for it when you run `worky project_name`.
-For example, if you have a project named `my_project` you can create a `~/.config/worky/my_project/config.toml` file and use `worky my_project` to load the project workspace.
+### Worky configuration file
+There are multiple ways to configure worky:
+ 1. Worky automatically looks for a `.worky.toml` file in the current directory where is called.
+ 2. You can create a `~/.config/worky/{{project_name}}.toml` file and worky will automatically look for it when you run `worky project_name`.
+    For example, if you have a project named `my_project` you can create a `~/.config/worky/my_project/config.toml` file and use `worky my_project` to load the project workspace.
+ 3. You can create a subdirectory named as your project (`project_name`) under the `~/.config/worky/`. Here you can put your `config.toml` file and worky will look for it when you run `worky project_name`.
+    For example, if you have a project named `my_project` you can create a `~/.config/worky/my_project/config.toml` file and use `worky my_project` to load the project workspace.
+ 4. You can specify a configuration file using the `-c` flag followed by the path of the config file (see `worky --help` for more details).
 
 ### Variables
 Variables can be defined in the `[variables]` section of the configuration file. The variable's value is the command to be executed.
@@ -73,7 +76,7 @@ After installing and configured worky, you can use it to load your project works
 ```shell
 worky  # If you have a .worky.toml file in the current directory
 # or
-worky {{project_name}}  # If you have a config file in ~/.config/worky/{{project_name}}/config.toml
+worky {{project_name}}  # If you have a config file in ~/.config/worky/{{project_name}}/config.toml or ~/.config/worky/{{project_name}}.toml
 # or
 worky -c {{path_to_config_file}}  # Defining a custom config file
 ```
