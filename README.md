@@ -65,14 +65,32 @@ args = [
     "up"
 ]
 ```
+
 Then you can run `worky -f docker` to load the workspace and run the `compose` step.
 
+## Tips and tricks
+
+### Create an alias
+
+You can create an alias by simply create a symbolic link to your config file in the `~/.config/worky/` directory.
+
+```shell
+ln -s ~/.config/worky/very_long_project_name.toml ~/.config/worky/aliased_name.toml
+```
+
+Then you can use both `worky very_long_project_name` and `worky aliased_name` to load the workspace.
+
 ## Limitations
-Worky configuration depends on the [TOML](https://toml.io/en/) syntax. This means that you can't create two steps with the same name.
-You can crate two different steps using variables with the same value. Moreover, this helps to keep the configuration file clean and readable.
+
+Worky configuration depends on the [TOML](https://toml.io/en/) syntax. This means that you can't create two steps with
+the same name.
+You can crate two different steps using variables with the same value. Moreover, this helps to keep the configuration
+file clean and readable.
 
 ## Usage
+
 After installing and configured worky, you can use it to load your project workspace simply by running:
+
 ```shell
 worky  # If you have a .worky.toml file in the current directory
 # or

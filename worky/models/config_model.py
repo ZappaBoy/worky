@@ -3,7 +3,7 @@ from typing import List
 
 import toml  # replace with tomllib whet python 3.11 become stable
 
-expandable_variables_pattern = re.compile(r"\$\{.*}")
+expandable_variables_pattern = re.compile(r"\$\{.*?}")
 excluded_steps_entries = ['variables']
 
 
