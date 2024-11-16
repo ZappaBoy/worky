@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 _comp_cmd_worky(){
     local config_dir cur suggestions
     config_dir="${DOMO_ROOT:-"$HOME/.config/worky"}"

@@ -11,7 +11,9 @@ This project can be used for every type of project or workspace, the only limita
 ## Future improvements
 Please note that this is a work-in-progress tool. If you have any ideas or suggestions, please open an issue or a pull request.
 Any helps is appreciated. Here is a list of future improvements:
-- [ ] Add the window manager support to open programs in a specific workspace/monitor.
+
+- [ ] Add the window manager support to open programs in a specific workspace/monitor. It probably can be done using
+  `xdotool` or `wmctrl`.
 
 ## Installation
 This project uses [Poetry](https://python-poetry.org/) to manage dependencies and packaging and it is available on [PyPI](https://pypi.org/project/worky/).
@@ -19,6 +21,13 @@ To install it, simply run:
 ```shell
 pip install worky
 ```
+
+To add the completion to your shell, you can run:
+
+```shell
+worky --completion | sudo tee /usr/share/bash-completion/completions/worky
+```
+
 ### For Arch Linux Repository users
 If you are on an arch-based distro and can access to the [Arch Linux Repository (AUR)](https://aur.archlinux.org/) you can install [worky](https://aur.archlinux.org/packages/worky) using an AUR helper like [yay](https://github.com/Jguer/yay):
 ```shell
