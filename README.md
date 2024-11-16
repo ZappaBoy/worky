@@ -26,6 +26,8 @@ To add the completion to your shell, you can run:
 
 ```shell
 worky --completion | sudo tee /usr/share/bash-completion/completions/worky
+# or add it to your shell configuration file
+echo 'eval "$(worky --completion)"' >> ~/.bashrc
 ```
 
 ### For Arch Linux Repository users
